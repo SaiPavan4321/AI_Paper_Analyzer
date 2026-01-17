@@ -1,0 +1,6 @@
+streamlit
+nltk
+transformers
+torch
+PyPDF2
+gtts

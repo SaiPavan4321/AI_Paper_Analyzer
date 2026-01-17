@@ -1,0 +1,377 @@
+/* Remove Streamlit injected top padding */
+.stApp > div:first-child {
+    padding-top: 0 !important;
+}
+/* Login page full-screen centering */
+.auth-wrapper {
+    position: fixed;
+    inset: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* ==================================================
+   RESET STREAMLIT LAYOUT INTERFERENCE
+================================================== */
+header, footer {
+    display: none !important;
+}
+section.main > div {
+    padding: 0 !important;
+}
+
+.block-container {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ==================================================
+   LOGIN FULL SCREEN CENTERING
+================================================== */
+
+.login-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, #020617, #020617);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================================================
+   LOGIN CARD (PROFESSIONAL PORTAL)
+================================================== */
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    min-height: 520px;
+    padding: 42px 32px 36px;
+    border-radius: 28px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background: linear-gradient(
+        145deg,
+        rgba(30, 41, 59, 0.96),
+        rgba(15, 23, 42, 0.96)
+    );
+
+    box-shadow:
+        0 40px 90px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ==================================================
+   LOGIN TEXT
+================================================== */
+
+.login-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.login-sub {
+    font-size: 15px;
+    color: #c7d2fe;
+    margin-bottom: 26px;
+}
+
+/* ==================================================
+   INPUT & BUTTON
+================================================== */
+
+.login-card input {
+    height: 48px !important;
+    border-radius: 14px !important;
+}
+
+.login-card button {
+    margin-top: 26px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.login-card button:hover {
+    filter: brightness(1.08);
+}
+
+/* ==================================================
+   VISITS
+================================================== */
+
+.login-visits {
+    margin-top: 22px;
+    text-align: center;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 600px) {
+    .login-card {
+        margin: 0 16px;
+        min-height: 500px;
+    }
+}
+
+
+/* ==================================================
+   BASE RESET
+================================================== */
+
+html, body, .stApp {
+    font-family: "Segoe UI", sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ==================================================
+   LIGHT MODE
+================================================== */
+@media (prefers-color-scheme: light) {
+
+    html, body, .stApp {
+        background-color: #f8fafc;
+        color: #1f2937;
+    }
+
+    .hero-card {
+        background:
+            radial-gradient(80% 60% at 50% 0%, rgba(99,102,241,0.35), transparent 60%),
+            linear-gradient(135deg, #1e293b, #020617);
+        color: #f9fafb;
+        box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+    }
+
+    .hero-title { color: #f9fafb; }
+    .hero-sub { color: #c7d2fe; }
+
+    @media (prefers-color-scheme: light) {
+
+    .upload-card {
+        background: #ffffff;
+        color: #1f2937; /* DARK TEXT */
+        box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    .upload-title {
+        color: #1f2937;
+        font-weight: 600;
+    }
+
+    .upload-card small,
+    .upload-card p,
+    .upload-card span {
+        color: #374151;
+    }
+}
+
+    button {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+        color: white !important;
+    }
+}
+
+/* ==================================================
+   DARK MODE
+================================================== */
+@media (prefers-color-scheme: dark) {
+
+    html, body, .stApp {
+        background: linear-gradient(180deg, #020617, #020617);
+        color: #e5e7eb;
+    }
+
+    .hero-card {
+        background:
+            radial-gradient(80% 60% at 50% 0%, rgba(99,102,241,0.35), transparent 60%),
+            linear-gradient(135deg, #1e293b, #020617);
+        color: #f9fafb;
+        box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+    }
+
+    .hero-title { color: #f9fafb; }
+    .hero-sub { color: #c7d2fe; }
+
+    .upload-card {
+        background:
+            linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        color: #e5e7eb;
+    }
+
+    button {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+        color: white !important;
+    }
+}
+
+/* ==================================================
+   SHARED COMPONENTS
+================================================== */
+
+.hero-card {
+    padding: 36px 28px;
+    border-radius: 22px;
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.hero-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+}
+
+.hero-sub {
+    font-size: clamp(15px, 2.5vw, 18px);
+    margin-top: 14px;
+}
+
+.upload-card {
+    padding: 26px;
+    border-radius: 18px;
+    max-width: 850px;
+    margin: auto;
+}
+
+.upload-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.section-title {
+    font-size: clamp(18px, 3vw, 22px);
+    font-weight: 600;
+    margin: 34px 0 12px 0;
+    text-align: center;
+}
+
+button {
+    height: 56px;
+    font-size: 16px !important;
+    border-radius: 14px !important;
+    border: none !important;
+}
+
+button:hover {
+    filter: brightness(1.08);
+}
+
+textarea {
+    border-radius: 12px !important;
+}
+
+/* ==================================================
+   MOBILE OPTIMIZATION
+================================================== */
+@media (max-width: 600px) {
+
+    .auth-card {
+        margin: 0 14px;
+    }
+
+    .hero-card {
+        padding: 26px 18px;
+    }
+
+    .upload-card {
+        padding: 20px;
+    }
+}
+/* ===============================
+   ANALYSIS MODULE GRID (CENTERED)
+================================ */
+
+.analysis-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 260px);
+    gap: 20px;
+}
+/* Analysis buttons */
+button {
+    height: 56px;
+    border-radius: 16px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    color: white !important;
+    border: none !important;
+}
+
+button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .analysis-grid {
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+}
+/* =========================================
+   GLOBAL BUTTON HOVER FIX (BLUE THEME)
+========================================= */
+
+/* Remove Streamlit red hover */
+button {
+    background-color: transparent;
+}
+
+/* Default button style */
+button,
+.stButton > button {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    color: #ffffff !important;
+    border: none !important;
+    transition:
+        background 0.3s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Hover → blue glow */
+button:hover,
+.stButton > button:hover {
+    background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(99,102,241,0.45);
+}
+
+/* Click / active */
+button:active,
+.stButton > button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 10px 24px rgba(99,102,241,0.35);
+}
+
+/* Focus (keyboard / accessibility) */
+button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.5);
+}
