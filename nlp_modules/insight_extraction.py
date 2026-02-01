@@ -18,7 +18,16 @@ def insight_extraction_pipeline(pdf_path: str) -> dict:
     if embedder is None:
         embedder = SentenceTransformer("all-MiniLM-L6-v2")
     if nlp is None:
-        nlp = spacy.load("en_core_web_sm")
+        import spacy
+        def load_spacy_model():
+            try:
+                return spacy.load("en_core_web_sm")
+            except:
+                import subprocess
+                subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+                return spacy.load("en_core_web_sm")
+    nlp = load_spacy_model()
+
     if tokenizer is None or model is None:
         tokenizer = T5Tokenizer.from_pretrained("t5-small", legacy=False)
         model = T5ForConditionalGeneration.from_pretrained("t5-small")
