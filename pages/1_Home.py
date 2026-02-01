@@ -50,27 +50,16 @@ with st.sidebar:
 top_left, top_center, top_right = st.columns([6, 3, 1])
 
 with top_right:
-    st.markdown(
-        f"""
-        <div style="
-            text-align:right;
-            line-height:1.4;
-            padding-right:25px;
-            padding-left:20px;
-        ">
-            <div style="font-weight:600; font-size:15px;">
-                {st.session_state.username}
-            </div>
-            <div>
-                <a href="?logout=true"
-                   style="font-size:13px; color:#a78bfa; text-decoration:none;">
-                    Logout
-                </a>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+  st.markdown(
+    f"""
+    <div class="top-user-box">
+        <div class="top-username">{st.session_state.username}</div>
+        <a href="?logout=true" class="top-logout">Logout</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # ---------------- GREETING ----------------
 hour = datetime.now().hour
@@ -81,7 +70,7 @@ st.markdown(
     <div class="hero-card">
         <div class="hero-title">{greet}, {st.session_state.username} 👋</div>
         <div class="hero-sub">
-            Upload a PDF to start analysis
+            Upload a text PDF to start analysis
         </div>
     </div>
     """,

@@ -375,3 +375,30 @@ button:focus-visible {
     outline: none;
     box-shadow: 0 0 0 3px rgba(56,189,248,0.5);
 }
+/* ===============================
+   TOP RIGHT USER BOX (FIXED)
+================================ */
+.top-user-box {
+    position: fixed;
+    top: 20px;
+    right: 40px;   /* 👈 controls distance from edge */
+    text-align: right;
+    z-index: 1000;
+}
+
+.top-username {
+    font-weight: 600;
+    font-size: 15px;
+    color: #e5e7eb;
+    white-space: nowrap; /* 🔥 PREVENT WRAP */
+}
+
+.top-logout {
+    font-size: 13px;
+    color: #a78bfa;
+    text-decoration: none;
+}
+
+.top-logout:hover {
+    text-decoration: underline;
+}
