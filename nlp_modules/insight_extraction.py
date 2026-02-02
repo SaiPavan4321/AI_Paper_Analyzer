@@ -26,7 +26,8 @@ def insight_extraction_pipeline(pdf_path: str) -> dict:
                 import subprocess
                 subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
                 return spacy.load("en_core_web_sm")
-    nlp = load_spacy_model()
+    nlp = spacy.load("en_core_web_sm")
+
 
     if tokenizer is None or model is None:
         tokenizer = T5Tokenizer.from_pretrained("t5-small", legacy=False)
