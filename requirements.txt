@@ -1,11 +1,14 @@
-streamlit
-spacy
-nltk
-PyPDF2
-pdfplumber
-gTTS
-torch
-transformers
-sentencepiece
+streamlit==1.31.1
 
+numpy==1.26.4
+scikit-learn==1.4.0
+nltk==3.8.1
+
+torch==2.1.2
+sentence-transformers==2.2.2
+transformers==4.36.2
+
+spacy==3.7.2
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
+
+pypdf==4.0.1
