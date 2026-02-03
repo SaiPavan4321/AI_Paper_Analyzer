@@ -1,8 +1,13 @@
 import os
 import streamlit as st
 
-def speak_output(text):
-    # Detect Streamlit Cloud
+def speak_output(text: str):
+    """
+    Speak text locally using pyttsx3.
+    On Streamlit Cloud, safely disable TTS.
+    """
+
+    # Detect Streamlit Community Cloud
     if os.environ.get("STREAMLIT_CLOUD") == "1":
         st.warning("🔇 Voice output is disabled on Streamlit Cloud.")
         return
@@ -12,5 +17,5 @@ def speak_output(text):
         engine = pyttsx3.init()
         engine.say(text)
         engine.runAndWait()
-    except Exception as e:
+    except Exception:
         st.error("Text-to-Speech is not supported in this environment.")

@@ -2,11 +2,13 @@ import streamlit as st
 import tempfile
 import os
 
+from utils.tts import speak_output
+
 from nlp_modules.ai_summarization import ai_summarization_pipeline
 from nlp_modules.insight_extraction import insight_extraction_pipeline
 from nlp_modules.keyword_extraction import keyword_extraction_pipeline
 from nlp_modules.text_preprocessing import text_preprocessing_pipeline
-from utils.tts import speak_output
+
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
@@ -14,22 +16,24 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-#---------Logout------------
+
+# ---------------- LOGOUT ----------------
 def logout():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
     st.switch_page("login.py")
-# ---------------- LOGOUT HANDLER ----------------
+
 if st.query_params.get("logout") == ["true"]:
     logout()
+
 # ---------------- AUTH GUARD ----------------
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
     st.warning("⚠️ Please login first")
     st.stop()
+
 # ---------------- LOAD CSS ----------------
 with open("assets/styles.css", encoding="utf-8") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
 
 # ---------------- PDF CHECK ----------------
 if "uploaded_file" not in st.session_state:
@@ -48,7 +52,7 @@ if "pdf_path" not in st.session_state:
 
 pdf_path = st.session_state.pdf_path
 
-# Sidebar (minimal profile + history)
+# ---------------- SIDEBAR ----------------
 with st.sidebar:
     st.markdown("## 👤 Profile")
     st.write("**Username:**", st.session_state.username)
@@ -61,32 +65,8 @@ with st.sidebar:
             st.write("•", pdf)
     else:
         st.caption("No uploads yet")
-    st.divider()
 
-top_left, top_center, top_right = st.columns([6, 3, 1])
-
-with top_right:
-    st.markdown(
-        f"""
-        <div style="
-            text-align:right;
-            line-height:1.4;
-            padding-right:50px;   /* 👈 MOVE LEFT */
-        ">
-            <div style="font-weight:600; font-size:15px;">
-                {st.session_state.username}
-            </div>
-            <div>
-                <a href="?logout=true"
-                   style="font-size:13px; color:#a78bfa; text-decoration:none;">
-                    Logout
-                </a>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-# ---------------- PAGE TITLE ----------------
+# ---------------- HEADER ----------------
 st.markdown("<h2 style='text-align:center;'>🧠 Analysis Modules</h2>", unsafe_allow_html=True)
 
 # ---------------- MODULE BUTTONS ----------------
@@ -107,15 +87,15 @@ with center:
 
     if c4.button("🧹 Text Preprocessing", use_container_width=True):
         st.session_state.selected_module = "preprocess"
+
     st.divider()
 
-# ---------------- RUN MODULE ONLY ON CHANGE ----------------
+# ---------------- RUN MODULE ----------------
 if "selected_module" in st.session_state:
 
     module = st.session_state.selected_module
 
     if st.session_state.get("last_ran") != module:
-        st.markdown("### 📊 Output")
         with st.spinner("Processing... Please wait"):
 
             if module == "summary":
@@ -135,21 +115,16 @@ if "selected_module" in st.session_state:
                 output_text = text_preprocessing_pipeline(pdf_path)
                 module_name = "Text Preprocessing"
 
-            # Save results
             st.session_state.output_text = output_text
             st.session_state.module_name = module_name
             st.session_state.last_ran = module
 
-# ---------------- OUTPUT DISPLAY ----------------
+# ---------------- OUTPUT ----------------
 if "output_text" in st.session_state:
 
-    #st.markdown("### 📊 Output")
     st.success(f"{st.session_state.module_name} completed")
     st.write(st.session_state.output_text)
 
-    # ---------------- SPEAKER ----------------
+    # ---------------- SPEAK OUTPUT ----------------
     if st.button("🔊 Speak Output"):
-        if os.environ.get("STREAMLIT_CLOUD") == "1":
-            st.info("🔇 Voice output works only in local execution.")
-        else:
-            speak_output(result_text)
+        speak_output(st.session_state.output_text)
