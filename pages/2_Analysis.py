@@ -149,11 +149,7 @@ if "output_text" in st.session_state:
 
     # ---------------- SPEAKER ----------------
     if st.button("🔊 Speak Output"):
-        audio_path = speak_output(
-            username=st.session_state.username,
-            module_name=st.session_state.module_name,
-            content=st.session_state.output_text
-        )
-        if audio_path and os.path.exists(audio_path):
-            st.audio(audio_path, format="audio/mp3")
-            st.caption("▶️ Use the controls above to play / pause / resume")
+        if os.environ.get("STREAMLIT_CLOUD") == "1":
+            st.info("🔇 Voice output works only in local execution.")
+        else:
+            speak_output(result_text)
