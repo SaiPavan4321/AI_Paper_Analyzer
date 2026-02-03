@@ -10,5 +10,7 @@ transformers==4.36.2
 
 spacy==3.7.2
 PyPDF2==3.0.1
+PyMuPDF==1.23.26
+
 
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
